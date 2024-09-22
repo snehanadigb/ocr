@@ -12,6 +12,7 @@ router.post('/verify', async (req, res) => {
             where: { aadharNumber }
         });
         if (user) {
+            console.log("verified");
             res.status(200).json({
                 success: true,
                 message: 'Aadhaar number verified',
