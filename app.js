@@ -25,7 +25,7 @@ app.post('/extract', (req, res) => {
         const aadharNumber = text.match(/\d{4}\s\d{4}\s\d{4}/);
         if (aadharNumber) {
             const extractedAadhar = aadharNumber[0].replace(/\s/g, '');
-            return axios.post('http://localhost:5009/api/verify', {
+            return axios.post(`${process.env.BACKEND_URL}/api/verify`, {
                 aadharNumber: extractedAadhar
             })
             .then(response => {
@@ -52,6 +52,6 @@ app.post('/extract', (req, res) => {
 
 
 
-app.listen(5009, () => {
+app.listen(process.env.PORT, () => {
     console.log('Aadhaar verification service running on http://localhost:5009');
 });
